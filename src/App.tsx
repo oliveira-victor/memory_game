@@ -1,3 +1,5 @@
+import Footer from "./containers/Footer"
+import MainMenu from "./containers/MainMenu"
 import GlobalStyle, { Wrapper } from "./styles"
 
 function App() {
@@ -6,7 +8,8 @@ function App() {
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>Olá Brasil!<br /><span>jogo da memória</span></h1>
+        <MainMenu />
+        <Footer />
       </Wrapper>
     </>
   )
