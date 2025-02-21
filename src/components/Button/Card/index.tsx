@@ -14,12 +14,16 @@ type Props = {
 
 const Card = ({ item, id, handleClick }: Props) => {
 
-    const itemClass = item.stat ? " active " + item.stat : ""
+    /* const itemClass = item.stat ? " active " + item.stat : "" */
 
     return (
-        <S.Card className={itemClass} onClick={() => handleClick(id)}>
-            <img src={item.img} alt="Card" />
-        </S.Card>
+        <>
+            <S.Card onClick={() => handleClick(id)}>
+                {item.stat && (
+                    <img src={item.img} alt="Card" />
+                )}
+            </S.Card>
+        </>
     )
 }
 
