@@ -37,6 +37,14 @@ export const GlobalStyle = createGlobalStyle`
         a {
             color: ${colors.main};
         }
+
+        .active {
+            display: block;
+        }
+
+        .active img {
+            display: block;
+        }
     }
 `
 
