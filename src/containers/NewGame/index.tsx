@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as S from './styles'
 import Card from '../../components/Button/Card'
 
@@ -30,23 +30,38 @@ const NewGame = () => {
     const [prev, setPrev] = useState<number>(-1)
     const [disabled, setDisabled] = useState(false)
     const [success, setSuccess] = useState(0)
-    const [touch, setTouch] = useState(0)
+    const [attempt, setAttempt] = useState(0)
+    const [gameOver, setGameOver] = useState(false)
+
+    const checkAllCorrect = () => {
+        const allCorrect = items.every(item => item.stat === "correct");
+
+        if (allCorrect) { 
+            setGameOver(true)
+        };
+
+        setDisabled(false)
+    };
+
+    useEffect(() => {
+        if (attempt === 0) return
+
+        setIsRunning(false)
+        console.log(`Você ganhou em ${attempt} tentativas!`)
+    }, [gameOver])
 
     function check(current: number) {
         if (disabled) return
         setDisabled(true)
-        setTouch(touch + 1)
-        
+        setAttempt(attempt + 1)
+
         if (items[current].id == items[prev].id) {
             setSuccess(success + 1)
             items[current].stat = 'correct'
             items[prev].stat = 'correct'
             setItems([...items])
             setPrev(-1)
-            if (success === 9) {
-                alert(`Você ganhou em ${touch} toques!`)
-            }
-            setDisabled(false)
+            checkAllCorrect()
         } else {
             items[current].stat = 'wrong'
             items[prev].stat = 'wrong'
@@ -62,6 +77,10 @@ const NewGame = () => {
     }
 
     function handleClick(id: number) {
+        if (gameOver) return
+
+        if (!isRunning) setIsRunning(true)
+
         if (prev === -1) {
             items[id].stat = "active"
             setItems([...items])
@@ -71,10 +90,38 @@ const NewGame = () => {
         }
     }
 
+    // TIMER
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [isRunning, setIsRunning] = useState(false);
+
+    useEffect(() => {
+        let interval: number;
+
+        if (isRunning) {
+            interval = setInterval(() => {
+                setSeconds((prevSeconds) => {
+                    if (prevSeconds === 59) {
+                        setMinutes((prevMinutes) => prevMinutes + 1);
+                        return 0;
+                    }
+                    return prevSeconds + 1;
+                });
+            }, 1000);
+        }
+
+        return () => clearInterval(interval); // Cleanup interval on unmount or when stopped
+    }, [isRunning]);
+
+    const formatTime = (time: number) => (time < 10 ? `0${time}` : time);
+
     return (
         <>
             <p>Encontre os pares</p>
-            <S.MainBoard>
+            <S.Timer>
+                {formatTime(minutes)}:{formatTime(seconds)}
+            </S.Timer>
+            <S.MainBoard style={gameOver ? {backgroundColor: '#68de62'} : {}}>
                 {items.map((item, index) => (
                     <Card key={index} item={item} id={index} handleClick={handleClick} />
                 ))}

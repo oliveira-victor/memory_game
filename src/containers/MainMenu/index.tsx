@@ -54,7 +54,7 @@ const MainMenu = () => {
                 {actions.newGame ?
                     <>
                         <NewGame />
-                        <Button title="Voltar" onClick={back} />
+                        <Button title="Sair" onClick={back} />
                     </> : ''}
 
                     {actions.howToPlay ? 

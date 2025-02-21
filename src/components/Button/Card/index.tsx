@@ -13,9 +13,6 @@ type Props = {
 
 
 const Card = ({ item, id, handleClick }: Props) => {
-
-    /* const itemClass = item.stat ? " active " + item.stat : "" */
-
     return (
         <>
             <S.Card onClick={() => handleClick(id)}>
