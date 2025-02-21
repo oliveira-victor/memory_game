@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import * as S from './styles'
 import Card from '../../components/Button/Card'
+
+import * as S from './styles'
+
+import star from '../../assets/images/star.svg'
 
 const NewGame = () => {
 
@@ -32,11 +35,12 @@ const NewGame = () => {
     const [success, setSuccess] = useState(0)
     const [attempt, setAttempt] = useState(0)
     const [gameOver, setGameOver] = useState(false)
+    const [finalScore, setFinalScore] = useState(0)
 
     const checkAllCorrect = () => {
         const allCorrect = items.every(item => item.stat === "correct");
 
-        if (allCorrect) { 
+        if (allCorrect) {
             setGameOver(true)
         };
 
@@ -47,7 +51,7 @@ const NewGame = () => {
         if (attempt === 0) return
 
         setIsRunning(false)
-        console.log(`Você ganhou em ${attempt} tentativas!`)
+        getScore()
     }, [gameOver])
 
     function check(current: number) {
@@ -91,42 +95,93 @@ const NewGame = () => {
     }
 
     // TIMER
-    const [seconds, setSeconds] = useState(0);
-    const [minutes, setMinutes] = useState(0);
+    const [time, setTime] = useState(0); // Time in seconds
     const [isRunning, setIsRunning] = useState(false);
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
 
     useEffect(() => {
-        let interval: number;
+        let interval: NodeJS.Timeout;
 
         if (isRunning) {
             interval = setInterval(() => {
-                setSeconds((prevSeconds) => {
-                    if (prevSeconds === 59) {
-                        setMinutes((prevMinutes) => prevMinutes + 1);
-                        return 0;
-                    }
-                    return prevSeconds + 1;
+                setTime((prevTime) => {
+                    const newTime = prevTime + 1;
+                    setMinutes(Math.floor(newTime / 60));
+                    setSeconds(newTime % 60);
+                    return newTime;
                 });
             }, 1000);
         }
 
-        return () => clearInterval(interval); // Cleanup interval on unmount or when stopped
+        return () => clearInterval(interval);
     }, [isRunning]);
 
-    const formatTime = (time: number) => (time < 10 ? `0${time}` : time);
+    const formatTime = (minutes: number, seconds: number) => {
+        return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    };
+
+    // SCORE
+    const getScore = () => {
+        let timeScore = 0
+        let touchScore = 0
+
+        if (minutes >= 1) {
+            timeScore = 1
+        } else if (seconds >= 40) {
+            timeScore = 2
+        } else {
+            timeScore = 3
+        }
+
+        if (attempt >= 50) {
+            touchScore = 1
+        } else if (attempt >= 25) {
+            touchScore = 2
+        } else {
+            touchScore = 3
+        }
+
+        setFinalScore(Math.floor((timeScore + touchScore) / 2))
+        return finalScore
+    }
+
+    const getStars = (score: number) => {
+        let starIcons: any = []
+        for (let i = 0; i < score; i++) {
+            starIcons.push(<img key={i} className='star' src={star} alt="Ícone de estrela" />)
+        }
+
+        return starIcons
+    }
 
     return (
-        <>
+        <S.GameArea>
             <p>Encontre os pares</p>
             <S.Timer>
-                {formatTime(minutes)}:{formatTime(seconds)}
+                {formatTime(minutes, seconds)}
             </S.Timer>
-            <S.MainBoard style={gameOver ? {backgroundColor: '#68de62'} : {}}>
+            <S.MainBoard style={gameOver ? { backgroundColor: '#68de62' } : {}}>
                 {items.map((item, index) => (
                     <Card key={index} item={item} id={index} handleClick={handleClick} />
                 ))}
             </S.MainBoard>
-        </>
+            {gameOver && (
+                <S.GameOverScreen>
+                    <span className='victory'>Parabéns! Você venceu!</span>
+                    <p>
+                        Seu tempo: <span className='result'>{formatTime(minutes, seconds)}</span>
+                    </p>
+                    <p>
+                        Tentativas: <span className="result">{attempt}</span>
+                    </p>
+                    {getStars(finalScore)}
+                    <p>
+                        {finalScore}/3
+                    </p>
+                </S.GameOverScreen>
+            )}
+        </S.GameArea>
     )
 }
 
