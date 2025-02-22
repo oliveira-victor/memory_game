@@ -149,7 +149,7 @@ const NewGame = () => {
             timeScore = 3
         }
 
-        if (attempt >= 40) {
+        if (attempt >= 30) {
             touchScore = 1
         } else if (attempt >= 25) {
             touchScore = 2
