@@ -5,23 +5,31 @@ import * as S from './styles'
 
 import star from '../../assets/images/star.svg'
 
+import img01 from '../../assets/images/img01.webp'
+import img02 from '../../assets/images/img02.webp'
+import img03 from '../../assets/images/img03.webp'
+import img04 from '../../assets/images/img04.webp'
+import img05 from '../../assets/images/img05.webp'
+import img06 from '../../assets/images/img06.webp'
+import img07 from '../../assets/images/img07.webp'
+
 const NewGame = () => {
 
     const [items, setItems] = useState([
-        { id: 1, img: 'https://img.freepik.com/premium-vector/lion-illustration-kids_495897-93.jpg', stat: '' },
-        { id: 1, img: 'https://img.freepik.com/premium-vector/lion-illustration-kids_495897-93.jpg', stat: '' },
-        { id: 2, img: 'https://img.freepik.com/premium-vector/cute-adorable-rabbit-cartoon-character-vector-illustration-funny-easter-bunny-flat-design-template_135170-3036.jpg?semt=ais_hybrid', stat: '' },
-        { id: 2, img: 'https://img.freepik.com/premium-vector/cute-adorable-rabbit-cartoon-character-vector-illustration-funny-easter-bunny-flat-design-template_135170-3036.jpg?semt=ais_hybrid', stat: '' },
-        { id: 3, img: 'https://as1.ftcdn.net/jpg/01/45/90/18/1000_F_145901814_nBmEjqsHVnAsy3upYbyKFVSU4hj24K2h.jpg', stat: '' },
-        { id: 3, img: 'https://as1.ftcdn.net/jpg/01/45/90/18/1000_F_145901814_nBmEjqsHVnAsy3upYbyKFVSU4hj24K2h.jpg', stat: '' },
-        { id: 4, img: 'https://static.vecteezy.com/system/resources/previews/008/950/999/non_2x/a-simple-cute-red-bird-with-heart-shaped-feathers-on-its-tail-cute-decorative-character-for-valentine-s-day-cards-simple-flat-color-illustration-isolated-on-white-background-vector.jpg', stat: '' },
-        { id: 4, img: 'https://static.vecteezy.com/system/resources/previews/008/950/999/non_2x/a-simple-cute-red-bird-with-heart-shaped-feathers-on-its-tail-cute-decorative-character-for-valentine-s-day-cards-simple-flat-color-illustration-isolated-on-white-background-vector.jpg', stat: '' },
-        { id: 5, img: 'https://as2.ftcdn.net/jpg/01/79/68/05/1000_F_179680524_OdzHcuIJn0q3pfqaFtGMYoJiMUt3yqJD.jpg', stat: '' },
-        { id: 5, img: 'https://as2.ftcdn.net/jpg/01/79/68/05/1000_F_179680524_OdzHcuIJn0q3pfqaFtGMYoJiMUt3yqJD.jpg', stat: '' },
-        { id: 6, img: 'https://img.freepik.com/free-vector/hand-drawn-pitbull-illustration_52683-62647.jpg', stat: '' },
-        { id: 6, img: 'https://img.freepik.com/free-vector/hand-drawn-pitbull-illustration_52683-62647.jpg', stat: '' },
-        { id: 7, img: 'https://img.freepik.com/free-psd/kawaii-cat-illustration_23-2151299390.jpg?semt=ais_hybrid', stat: '' },
-        { id: 7, img: 'https://img.freepik.com/free-psd/kawaii-cat-illustration_23-2151299390.jpg?semt=ais_hybrid', stat: '' },
+        { id: 1, img: img01, stat: '' },
+        { id: 1, img: img01, stat: '' },
+        { id: 2, img: img02, stat: '' },
+        { id: 2, img: img02, stat: '' },
+        { id: 3, img: img03, stat: '' },
+        { id: 3, img: img03, stat: '' },
+        { id: 4, img: img04, stat: '' },
+        { id: 4, img: img04, stat: '' },
+        { id: 5, img: img05, stat: '' },
+        { id: 5, img: img05, stat: '' },
+        { id: 6, img: img06, stat: '' },
+        { id: 6, img: img06, stat: '' },
+        { id: 7, img: img07, stat: '' },
+        { id: 7, img: img07, stat: '' },
         { id: 8, img: 'https://static.vecteezy.com/system/resources/thumbnails/007/270/752/small_2x/cartoon-green-snake-on-white-background-vector.jpg', stat: '' },
         { id: 8, img: 'https://static.vecteezy.com/system/resources/thumbnails/007/270/752/small_2x/cartoon-green-snake-on-white-background-vector.jpg', stat: '' },
         { id: 9, img: 'https://img.freepik.com/premium-vector/capybara-cute-white-background-vector-illustration-cutie-funny-capybara-cartoon-portrait_702545-1281.jpg', stat: '' },
@@ -84,6 +92,8 @@ const NewGame = () => {
         if (gameOver) return
 
         if (!isRunning) setIsRunning(true)
+
+        if (items[id].stat === "correct" || items[id].stat === "wrong") return
 
         if (prev === -1) {
             items[id].stat = "active"
