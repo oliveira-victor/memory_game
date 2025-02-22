@@ -42,6 +42,14 @@ const MainMenu = () => {
                 {screen === 'credits' &&
                     <section>
                         <Credits />
+                        <div style={{ display: 'flex', flexDirection:'column', padding: '20px 0', gap: '6px' }}>
+                            <a href="/files/cards-para-imprimir.pdf" download="cards-para-imprimir.pdf">
+                                Baixar cards para impressão.
+                            </a>
+                            <a href="/files/para-colorir.pdf" download="para-colorir.pdf">
+                                Baixar desenhos para colorir.
+                            </a>
+                        </div>
                         <Button title="Voltar" onClick={() => setScreen('mainScreen')} />
                     </section>
                 }
