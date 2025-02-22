@@ -3,6 +3,8 @@ import { colors } from "./colors";
 import { fonts } from "./fonts";
 import { resolution } from "./resolution";
 
+import bg from '../assets/images/bg.svg'
+
 export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
@@ -44,6 +46,8 @@ export const Wrapper = styled.div`
     max-width: 1920px;
     margin: 0 auto;
     background-color: ${colors.background};
+    background-image: url(${bg});
+    background-size: cover;
     min-height: 100vh;
 `
 

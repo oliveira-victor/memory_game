@@ -13,6 +13,8 @@ import img05 from '../../assets/images/img05.webp'
 import img06 from '../../assets/images/img06.webp'
 import img07 from '../../assets/images/img07.webp'
 import img08 from '../../assets/images/img08.webp'
+import img09 from '../../assets/images/img09.webp'
+import img10 from '../../assets/images/img10.webp'
 
 const NewGame = () => {
 
@@ -33,10 +35,10 @@ const NewGame = () => {
         { id: 7, img: img07, stat: '' },
         { id: 8, img: img08, stat: '' },
         { id: 8, img: img08, stat: '' },
-        { id: 9, img: 'https://img.freepik.com/premium-vector/capybara-cute-white-background-vector-illustration-cutie-funny-capybara-cartoon-portrait_702545-1281.jpg', stat: '' },
-        { id: 9, img: 'https://img.freepik.com/premium-vector/capybara-cute-white-background-vector-illustration-cutie-funny-capybara-cartoon-portrait_702545-1281.jpg', stat: '' },
-        { id: 10, img: 'https://as2.ftcdn.net/v2/jpg/04/79/05/27/1000_F_479052730_6GqTcbr3b0O5HiJ6DnFdI3gasfofYHnf.jpg', stat: '' },
-        { id: 10, img: 'https://as2.ftcdn.net/v2/jpg/04/79/05/27/1000_F_479052730_6GqTcbr3b0O5HiJ6DnFdI3gasfofYHnf.jpg', stat: '' }
+        { id: 9, img: img09, stat: '' },
+        { id: 9, img: img09, stat: '' },
+        { id: 10, img: img10, stat: '' },
+        { id: 10, img: img10, stat: '' }
     ].sort(() => Math.random() - 0.5))
 
     const [prev, setPrev] = useState<number>(-1)

@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import cardBack from '../../../assets/images/card-back.webp'
 
 export const Card = styled.div`
     background-color:#1a3e6d;
+    background-image: url(${cardBack});
     border-radius: 10px;
     aspect-ratio: 1 / 1;
     display: flex;

@@ -5,6 +5,8 @@ import NewGame from "../NewGame"
 import HowToPlay from "../HowToPlay"
 import Credits from "../Credits"
 
+import cards from '../../assets/images/cards.webp'
+
 const MainMenu = () => {
 
     const [screen, setScreen] = useState<'mainScreen' | 'newGame' | 'tutorial' | 'credits'>('mainScreen')
@@ -13,33 +15,35 @@ const MainMenu = () => {
         <Canvas>
             <div className="board">
                 {screen === 'mainScreen' && (
-                    <div>
+                    <section>
                         <h1>Olá Brasil!<br /><span>jogo da memória</span></h1>
+                        <img style={{ maxWidth: '500px', width: '100%', height: 'auto' }} src={cards} alt="Cartões do jogo da memória" />
                         <Button title='Novo jogo' onClick={() => setScreen('newGame')} />
                         <Button title='Como jogar' onClick={() => setScreen('tutorial')} />
                         <Button title='Créditos' onClick={() => setScreen('credits')} />
-                    </div>
+                    </section>
                 )}
 
                 {screen === 'newGame' &&
-                    <>
+                    <section>
                         <NewGame />
                         <Button title="Sair" onClick={() => setScreen('mainScreen')} />
-                    </>
+                    </section>
                 }
 
                 {screen === 'tutorial' &&
-                    <>
+                    <section>
                         <HowToPlay />
+                        <Button title="Jogar" onClick={() => setScreen('newGame')} />
                         <Button title="Voltar" onClick={() => setScreen('mainScreen')} />
-                    </>
+                    </section>
                 }
 
                 {screen === 'credits' &&
-                    <>
+                    <section>
                         <Credits />
                         <Button title="Voltar" onClick={() => setScreen('mainScreen')} />
-                    </>
+                    </section>
                 }
             </div>
         </Canvas>
