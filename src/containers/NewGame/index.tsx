@@ -12,6 +12,7 @@ import img04 from '../../assets/images/img04.webp'
 import img05 from '../../assets/images/img05.webp'
 import img06 from '../../assets/images/img06.webp'
 import img07 from '../../assets/images/img07.webp'
+import img08 from '../../assets/images/img08.webp'
 
 const NewGame = () => {
 
@@ -30,8 +31,8 @@ const NewGame = () => {
         { id: 6, img: img06, stat: '' },
         { id: 7, img: img07, stat: '' },
         { id: 7, img: img07, stat: '' },
-        { id: 8, img: 'https://static.vecteezy.com/system/resources/thumbnails/007/270/752/small_2x/cartoon-green-snake-on-white-background-vector.jpg', stat: '' },
-        { id: 8, img: 'https://static.vecteezy.com/system/resources/thumbnails/007/270/752/small_2x/cartoon-green-snake-on-white-background-vector.jpg', stat: '' },
+        { id: 8, img: img08, stat: '' },
+        { id: 8, img: img08, stat: '' },
         { id: 9, img: 'https://img.freepik.com/premium-vector/capybara-cute-white-background-vector-illustration-cutie-funny-capybara-cartoon-portrait_702545-1281.jpg', stat: '' },
         { id: 9, img: 'https://img.freepik.com/premium-vector/capybara-cute-white-background-vector-illustration-cutie-funny-capybara-cartoon-portrait_702545-1281.jpg', stat: '' },
         { id: 10, img: 'https://as2.ftcdn.net/v2/jpg/04/79/05/27/1000_F_479052730_6GqTcbr3b0O5HiJ6DnFdI3gasfofYHnf.jpg', stat: '' },
@@ -146,7 +147,7 @@ const NewGame = () => {
             timeScore = 3
         }
 
-        if (attempt >= 50) {
+        if (attempt >= 40) {
             touchScore = 1
         } else if (attempt >= 25) {
             touchScore = 2

@@ -11,14 +11,14 @@ type Props = {
     handleClick: (id: number) => void
 }
 
-
 const Card = ({ item, id, handleClick }: Props) => {
+
+    const newClass = item.stat ? "visible" : "hidden"
+
     return (
         <>
             <S.Card onClick={() => handleClick(id)}>
-                {item.stat && (
-                    <img src={item.img} alt="Card" />
-                )}
+                <img style={{ visibility: newClass }} src={item.img} alt="Card" />
             </S.Card>
         </>
     )
