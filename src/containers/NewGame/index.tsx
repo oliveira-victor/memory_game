@@ -127,7 +127,9 @@ const NewGame = () => {
         return () => clearInterval(interval);
     }, [isRunning]);
 
-    const formatTime = (minutes: number, seconds: number) => {
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
         return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
     };
 
@@ -169,7 +171,7 @@ const NewGame = () => {
         <S.GameArea>
             <p>Encontre os pares</p>
             <S.Timer>
-                {formatTime(minutes, seconds)}
+                {formatTime(time)}
             </S.Timer>
             <S.MainBoard style={gameOver ? { backgroundColor: '#68de62' } : {}}>
                 {items.map((item, index) => (
@@ -180,7 +182,7 @@ const NewGame = () => {
                 <S.GameOverScreen>
                     <span className='victory'>Parabéns! Você venceu!</span>
                     <p>
-                        Seu tempo: <span className='result'>{formatTime(minutes, seconds)}</span>
+                        Seu tempo: <span className='result'>{formatTime(time)}</span>
                     </p>
                     <p>
                         Tentativas: <span className="result">{attempt}</span>
